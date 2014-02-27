@@ -21,12 +21,12 @@ jar.enabled = false
 jacocoTestReport.group = 'Verification'
 
 task generateLoggingDocumentation {
-    String outputFile = "${buildDir}/error-codes.txt"
+    String outputFile = "${buildDir}/log-messages.txt"
     doLast {
         javaexec {
             classpath configurations.all, sourceSets.test.runtimeClasspath
             main = 'uk.gov.gds.performance.collector.logging.GenerateOpsLoggerDocumentation'
-            args = [outputFile, 'uk.gov.gds.performance.collector.CollectorLogMessage']
+            args = [outputFile, 'build/classes/main']
         }
     }
 
