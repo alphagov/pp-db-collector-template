@@ -1,0 +1,15 @@
+apply plugin: 'java'
+
+dependencies {
+    testCompile hsqldb, jodaTime, jerseyClient, jsonProcessing, junit, hsqldbSqlTool, mongodb
+}
+
+test.enabled = false
+
+task integrationTest(type: Test, dependsOn: ["compileTestJava"]) {
+}
+
+task tunnelMongo(type: Exec) {
+    executable "ssh"
+    args "-f", "vagrant@127.0.0.1", "-p", "2222", "-o", "Compression=yes", "-o", "DSAAuthentication=yes", "-o", "LogLevel=FATAL", "-o", "StrictHostKeyChecking=no", "-o", "UserKnownHostsFile=/dev/null", "-o", "IdentitiesOnly=yes", "-i", System.getProperty("user.home") +"/.vagrant.d/insecure_private_key", "-L", "27037:127.0.0.1:27017", "-N"
+}

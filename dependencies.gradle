@@ -1,0 +1,31 @@
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+}
+
+def jacksonVersion = "2.3.0"
+def jerseyVersion = "2.5.1"
+
+ext {
+    args4j = "args4j:args4j:2.0.26"
+    hsqldb = "org.hsqldb:hsqldb:2.3.1"
+    jackson = [
+        "com.fasterxml.jackson.core:jackson-core:${jacksonVersion}",
+        "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+    ]
+    jerseyClient = ["org.glassfish.jersey.core:jersey-client:$jerseyVersion", "org.glassfish.jersey.connectors:jersey-apache-connector:$jerseyVersion"]
+    jodaTime = "joda-time:joda-time:2.3"
+    jsonProcessing = "org.glassfish.jersey.media:jersey-media-json-processing:$jerseyVersion"
+
+    //////////////////////////
+    //   TEST DEPENDENCIES
+    //////////////////////////
+    hsqldbSqlTool = "org.hsqldb:sqltool:2.3.1"
+    javaStubServer = "com.pyruby:java-stub-server:0.12"
+    jsonSchemaValidator = fileTree(dir: rootProject.file("lib"), include: "jsonSchemaValidator-*.jar")
+    junit = "junit:junit:4.11"
+    mockito = "org.mockito:mockito-core:1.9.5"
+    mutabilityDetector = "org.mutabilitydetector:MutabilityDetector:0.9"
+    mongodb = "org.mongodb:mongo-java-driver:2.11.3"
+}

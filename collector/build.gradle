@@ -1,0 +1,37 @@
+apply plugin: 'java'
+apply plugin: 'jacoco'
+apply plugin: 'fatjar'
+
+archivesBaseName = 'collector'
+group = 'uk.gov.gds.performance'
+version = '0.1'
+
+dependencies {
+    compile hsqldb, jodaTime, jerseyClient, jsonProcessing, args4j
+    testCompile junit, mockito, mutabilityDetector
+    testCompile hsqldbSqlTool, jackson, javaStubServer, jsonSchemaValidator
+}
+
+fatJar.manifest {
+    attributes['Main-Class'] = 'uk.gov.gds.performance.collector.Main'
+}
+assemble.dependsOn fatJar
+jar.enabled = false
+
+jacocoTestReport.group = 'Verification'
+
+task generateLoggingDocumentation {
+    String outputFile = "${buildDir}/error-codes.txt"
+    doLast {
+        javaexec {
+            classpath configurations.all, sourceSets.test.runtimeClasspath
+            main = 'uk.gov.gds.performance.collector.logging.GenerateOpsLoggerDocumentation'
+            args = [outputFile, 'uk.gov.gds.performance.collector.CollectorLogMessage']
+        }
+    }
+
+    dependsOn(compileJava, compileTestJava)
+    inputs.source sourceSets.main.allSource, sourceSets.test.allSource
+    outputs.file outputFile
+}
+assemble.dependsOn(generateLoggingDocumentation)

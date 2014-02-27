@@ -1,0 +1,18 @@
+apply from: 'ide-support.gradle'
+apply from: 'dependencies.gradle'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'eu.appsatori:gradle-fatjar-plugin:0.2'
+    }
+}
+
+task ci(type: GradleBuild) {
+    description = 'Everything you need to run for continuous integration'
+    group = "CI"
+    tasks = ['clean', 'build', 'jacocoTestReport']
+}
