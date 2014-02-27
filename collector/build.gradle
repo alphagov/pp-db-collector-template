@@ -8,6 +8,7 @@ version = '0.1'
 
 dependencies {
     compile hsqldb, jodaTime, jerseyClient, jsonProcessing, args4j
+    //runtime jdbcDriver
     testCompile junit, mockito, mutabilityDetector
     testCompile hsqldbSqlTool, jackson, javaStubServer, jsonSchemaValidator
 }

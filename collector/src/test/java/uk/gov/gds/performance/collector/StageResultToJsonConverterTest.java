@@ -46,7 +46,7 @@ public class StageResultToJsonConverterTest {
         ObjectMapper mapper = new ObjectMapper();
         JsonFactory jsonFactory = new JsonFactory(mapper);
         SchemaPassThroughCache cache = new SchemaPassThroughCache(jsonFactory);
-        JsonSchema schema = cache.getSchema(schemaLookup.getSchemaURL("slc_data_schema.json"));
+        JsonSchema schema = cache.getSchema(schemaLookup.getSchemaURL("sample_data_schema.json"));
         StageResultToJsonConverter convertor = new StageResultToJsonConverter();
         StageResult result = new StageResult(new LocalDate(), Period.day, "DIGITAL", 15);
 

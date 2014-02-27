@@ -1,7 +1,7 @@
 {
     "type" : "object",
     "required" : true,
-    "additionalProperties" : false,
+    "additionalProperties" : true,
     "properties" : {
         "_id" : {"type" : "string", "required" : true},
         "_timestamp" : {"type" : "string", "format" : "date-time", "required" : true},

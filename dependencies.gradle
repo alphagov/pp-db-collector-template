@@ -18,6 +18,9 @@ ext {
     jodaTime = "joda-time:joda-time:2.3"
     jsonProcessing = "org.glassfish.jersey.media:jersey-media-json-processing:$jerseyVersion"
 
+    //jdbcDriver = "org.hsqldb:hsqldb:2.3.1" //maven style dependency
+    //jdbcDriver = fileTree(dir: rootProject.file("lib"), include: "my-jdbc-driver-*.jar") //dependency in a file system
+
     //////////////////////////
     //   TEST DEPENDENCIES
     //////////////////////////
