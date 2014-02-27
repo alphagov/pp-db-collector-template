@@ -13,11 +13,11 @@ will generate project files for [Intellij IDEA](http://www.jetbrains.com/idea/).
 - Customise `uk.gov.gds.performance.collector.StatsRepository` to match your reporting database structure. Almost everyone will want to
 customise the SQL query being executed.
 - Add the appropriate JDBC driver to the project.
--- If it is available as a maven dependency, uncomment and modify the "maven style dependency"
+    - If it is available as a maven dependency, uncomment and modify the "maven style dependency"
 line of `dependencies.gradle`.
--- If it needs to be included from the local filesystem (the Oracle driver is an example of this), then uncomment
+    - If it needs to be included from the local filesystem (the Oracle driver is an example of this), then uncomment
 and modify the "dependency in a file system" line.
--- Uncomment the //runtime jdbcDriver line of `collector/build.gradle` to add the jdbc driver as a runtime dependency
+    - Uncomment the //runtime jdbcDriver line of `collector/build.gradle` to add the jdbc driver as a runtime dependency
 - Change `uk.gov.gds.performance.collector.StageResult` to send more or different fields to the Performance Platform. You will also need to
 edit `uk.gov.gds.performance.collector.StageResultToJsonConverter`
 - Customise the log message codes in `uk.gov.gds.performance.collector.CollectorLogMessage` — i.e., change the "GDS-" prefix to something else
