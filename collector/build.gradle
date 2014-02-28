@@ -26,7 +26,7 @@ task generateLoggingDocumentation {
     doLast {
         javaexec {
             classpath configurations.all, sourceSets.test.runtimeClasspath
-            main = 'uk.gov.gds.performance.collector.logging.GenerateOpsLoggerDocumentation'
+            main = 'uk.gov.gds.performance.collector.logging.GenerateLogMessageDocumentation'
             args = [outputFile, 'build/classes/main']
         }
     }
