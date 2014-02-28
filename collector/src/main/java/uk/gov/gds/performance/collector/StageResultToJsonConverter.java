@@ -11,7 +11,7 @@ public class StageResultToJsonConverter {
         return Json.createObjectBuilder()
                 .add("_id", stageResult.get_id())
                 .add("_timestamp", stageResult.getTimestamp().toDateTimeAtStartOfDay().toString(ISODateTimeFormat.dateTimeNoMillis()))
-                .add("_period", stageResult.getPeriod().toString())
+                .add("period", stageResult.getPeriod().toString())
                 .add("channel", stageResult.getChannel().toLowerCase())
                 .add("count", stageResult.getCount())
                 .build();

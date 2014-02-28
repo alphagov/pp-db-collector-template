@@ -5,7 +5,7 @@
     "properties" : {
         "_id" : {"type" : "string", "required" : true},
         "_timestamp" : {"type" : "string", "format" : "date-time", "required" : true},
-        "_period": {"type": "string", "required": true, "enumeration": ["hour", "day", "week", "month", "quarter"]},
+        "period": {"type": "string", "required": true, "enumeration": ["hour", "day", "week", "month", "quarter"]},
         "channel" : {"type" : "string", "required" : true, "enumeration" : ["digital", "paper", "auto-created"]},
         "count" : {"type" : "integer", "required" : true}
     }

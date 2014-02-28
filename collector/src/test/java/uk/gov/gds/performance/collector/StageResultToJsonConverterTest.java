@@ -33,7 +33,7 @@ public class StageResultToJsonConverterTest {
         JsonObject json = convertor.convert(result);
 
         assertEquals(5, json.size());
-        assertEquals("week", json.getString("_period"));
+        assertEquals("week", json.getString("period"));
         assertEquals(now.toDateTimeAtStartOfDay().toString(ISODateTimeFormat.dateTimeNoMillis()), json.getString("_timestamp"));
         assertEquals("digital", json.getString("channel"));
         assertEquals(50, json.getInt("count"));
