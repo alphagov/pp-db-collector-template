@@ -19,8 +19,10 @@ import javax.json.JsonObject;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.io.File;
 import java.io.IOException;
 import java.net.UnknownHostException;
+import java.nio.file.Files;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -54,7 +56,7 @@ public class EndToEndTest {
 
         Response response = ClientBuilder
                 .newClient()
-                .target("http://read.backdrop.perfplat.dev/data/slc-test/test")
+                .target("http://read.backdrop.perfplat.dev/data/test/test")
                 .request()
                 .accept(MediaType.APPLICATION_JSON_TYPE)
                 .buildGet()
@@ -70,13 +72,13 @@ public class EndToEndTest {
 
         Response response = ClientBuilder
                 .newClient()
-                .target("http://read.backdrop.perfplat.dev/data/slc-test/test")
+                .target("http://read.backdrop.perfplat.dev/data/test/test")
                 .request()
                 .accept(MediaType.APPLICATION_JSON_TYPE)
                 .buildGet()
                 .invoke();
         assertEquals(200, response.getStatus());
-        assertEquals(30, response.readEntity(JsonObject.class).getJsonArray("data").size());
+        assertEquals(16, response.readEntity(JsonObject.class).getJsonArray("data").size());
     }
 
     @Test
@@ -86,7 +88,7 @@ public class EndToEndTest {
 
         Response response = ClientBuilder
                 .newClient()
-                .target("http://read.backdrop.perfplat.dev/data/slc-test/test")
+                .target("http://read.backdrop.perfplat.dev/data/test/test")
                 .request()
                 .accept(MediaType.APPLICATION_JSON_TYPE)
                 .buildGet()
@@ -97,7 +99,7 @@ public class EndToEndTest {
 
     private void resetBackdropDataSet() throws UnknownHostException {
         DB db = Mongo.connect(new DBAddress("localhost", 27037, "backdrop"));
-        db.getCollection("student_finance_transactions_by_channel").remove(new BasicDBObject());
+        db.getCollection("test_test").remove(new BasicDBObject());
     }
 
     private void resetVarnishCache() {
@@ -105,7 +107,7 @@ public class EndToEndTest {
         cc.connectorProvider(new ApacheConnectorProvider());
         ClientBuilder
                 .newClient(cc)
-                .target("http://read.backdrop.perfplat.dev/data/slc-test/test")
+                .target("http://read.backdrop.perfplat.dev/data/test/test")
                 .request()
                 .accept(MediaType.APPLICATION_JSON_TYPE)
                 .method("PURGE");
@@ -123,8 +125,8 @@ public class EndToEndTest {
 
     private Server startHsql() throws IOException, ServerAcl.AclFormatException {
         HsqlProperties p = new HsqlProperties();
-        p.setProperty("server.database.0", "mem:slc");
-        p.setProperty("server.dbname.0", "slc");
+        p.setProperty("server.database.0", "mem:sample");
+        p.setProperty("server.dbname.0", "sample");
         p.setProperty("server.port", "9001");
 
         Server server = new Server();
